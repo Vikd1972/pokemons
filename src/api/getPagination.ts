@@ -1,13 +1,11 @@
+/* eslint-disable no-console */
 import type { AxiosResponse } from 'axios';
 import instance from '.';
 
-type PaginationType = {
-  limit: string;
-  offset: string;
-};
+import type { PaginationType } from '../types';
 
-const getPagination = async (options: PaginationType): Promise<AxiosResponse> => {
-  const response = await instance.get(`pokemon/?limit=${options.limit}&offset=${options.offset}`);
+const getPagination = async (): Promise<AxiosResponse<PaginationType>> => {
+  const response = await instance.get('pokemon/');
 
   return response;
 };

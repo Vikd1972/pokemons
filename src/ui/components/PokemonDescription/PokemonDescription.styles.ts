@@ -12,7 +12,7 @@ color: #454438;
 background-color: #C1B49C;
 border-left: 1px solid #454438;
 border-right: 1px solid #454438;
-overflow: hidden;
+overflow-y: auto;
 .image-container {
   width: 500px;
   height: auto;

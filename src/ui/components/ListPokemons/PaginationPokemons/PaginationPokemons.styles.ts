@@ -1,12 +1,12 @@
 import styled from 'styled-components';
 
-const PaginationPokemons = styled.div`
+const PaginationPokemonsWrapper = styled.div`
 .MuiButtonBase-root {
-  font-size: 1.2rem;
+  font-size: 1.5rem;
 }
 .MuiSvgIcon-root {
   font-size: 2rem;
 }
 `;
 
-export default PaginationPokemons;
+export default PaginationPokemonsWrapper;

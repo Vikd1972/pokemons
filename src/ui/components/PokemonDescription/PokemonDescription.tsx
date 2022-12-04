@@ -18,11 +18,9 @@ export const PokemonDescription: React.FC = () => {
         const response = await getPokemon(Number(id));
         setPokemon(response.data);
       } catch (error) {
-        // eslint-disable-next-line no-console
         console.log(error);
       }
     })();
-    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [id]);
 
   const ability = useMemo(() => {

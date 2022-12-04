@@ -1,51 +1,49 @@
-import React, { useState, useEffect } from 'react';
+/* eslint-disable no-console */
+import React, { useEffect, useState } from 'react';
 import Pagination from '@mui/material/Pagination';
 import { useSearchParams } from 'react-router-dom';
 
+import PaginationPokemonsWrapper from './PaginationPokemons.styles';
 import getPagination from '../../../../api/getPagination';
 
-import PaginationPokemons from './PaginationPokemons.styles';
+interface IOption {
+  limit: number;
+}
 
-export const ListPokemons: React.FC = () => {
-  const [page, setPage] = useState(1);
-  const [offset, setOffset] = useState('0');
+export const PaginationPokemons: React.FC<IOption> = (props) => {
   const [searchParams, setSearchParams] = useSearchParams();
-
-  const limit = '12';
+  const [count, setCount] = useState(0);
+  const [page, setPage] = useState(Number(searchParams.get('page')) || 1);
 
   useEffect(() => {
     (async () => {
       try {
-        const response = await getPagination({
-          offset,
-          limit,
-        });
-      } catch (error) {
-        // eslint-disable-next-line no-console
-        console.log(error);
+        const response = await getPagination();
+        setCount(Math.ceil(response.data.count / props.limit));
+      } catch (err) {
+        console.log(err);
       }
     })();
-  }, [offset]);
+  }, [props.limit]);
 
-  const onSkip = (event: React.ChangeEvent<unknown>, value: number) => {
+  const changePage = async (event: React.ChangeEvent<unknown>, value: number) => {
     setPage(value);
     searchParams.set('page', String(value));
-    searchParams.set('limit', String(limit));
     setSearchParams(searchParams);
   };
 
   return (
-    <PaginationPokemons>
+    <PaginationPokemonsWrapper>
       <Pagination
-        count={100}
+        count={count}
         page={page}
-        onChange={onSkip}
+        onChange={changePage}
         defaultPage={1}
-        siblingCount={2}
+        siblingCount={3}
         size="large"
         shape="rounded"
       />
-    </PaginationPokemons >
+    </PaginationPokemonsWrapper >
   );
 };
 

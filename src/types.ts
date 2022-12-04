@@ -62,3 +62,10 @@ export type StatType = {
   effort: number;
   stat: SpeciesType;
 };
+
+export type PaginationType = {
+  count: number;
+  next: string;
+  previous: string;
+  results: SpeciesType[];
+};

@@ -29,7 +29,7 @@ export const Pokemon: React.FC<IOption> = ({ id }) => {
   return (
     <PokemonWrapper>
       <Link to={`/pokemon/${id}`}>
-        <div>
+        <div className="image-container">
           <img src={pokemon?.sprites.front_default} alt="pokemon image" />
         </div>
         <p>Name: <span>{pokemon?.name}</span></p>

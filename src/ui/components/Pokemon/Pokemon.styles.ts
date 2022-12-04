@@ -7,6 +7,10 @@ display: flex;
 flex-direction: column;
 align-items: center;
 cursor: pointer;
+.image-container img {
+  height: 150px;
+  width: auto;
+}
 a {
   color: inherit;
   text-decoration: inherit;

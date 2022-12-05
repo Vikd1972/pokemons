@@ -1,20 +1,11 @@
-/* eslint-disable react-hooks/exhaustive-deps */
-import React, { useEffect, useState } from 'react';
+import React from 'react';
+
+import useScreenWidth from '../utils/useScreenWidth';
 
 import FooterWrapper from './Footer.styles';
 
 export const Footer: React.FC = () => {
-  const [widthScreen, setWidthScreen] = useState(0);
-
-  const onChangeWidth = () => {
-    setWidthScreen(document.documentElement.clientWidth);
-  };
-
-  useEffect(() => {
-    onChangeWidth();
-    window.addEventListener('resize', onChangeWidth);
-    return () => window.removeEventListener('resize', onChangeWidth);
-  }, []);
+  const widthScreen = useScreenWidth();
 
   return (
     <FooterWrapper>

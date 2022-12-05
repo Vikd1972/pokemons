@@ -1,4 +1,3 @@
-/* eslint-disable no-console */
 import React, { useEffect, useState } from 'react';
 import { Link } from 'react-router-dom';
 
@@ -20,12 +19,11 @@ export const Pokemon: React.FC<IOption> = ({ id }) => {
         const response = await getPokemon(id);
         setPokemon(response.data);
       } catch (error) {
-        // eslint-disable-next-line no-console
-        console.log(error);
+        console.error(error);
       }
     })();
-    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [id]);
+
   return (
     <PokemonWrapper>
       <Link to={`/pokemon/${id}`}>

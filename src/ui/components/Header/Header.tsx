@@ -3,8 +3,9 @@ import React, { useState, useEffect, useMemo } from 'react';
 
 import HeaderWrapper from './Header.styles';
 
+const locale = 'ru';
+
 export const Header: React.FC = () => {
-  const locale = 'ru';
   const [today, setToday] = useState(new Date());
 
   useEffect(() => {
@@ -16,22 +17,10 @@ export const Header: React.FC = () => {
     };
   }, []);
 
-  const date = useMemo(() => {
-    return today.toLocaleDateString(locale);
-  }, [
-    today.getDate(),
-  ]);
-
-  const time = useMemo(() => {
-    return today.toLocaleTimeString(locale);
-  }, [
-    today,
-  ]);
-
   return (
     <HeaderWrapper>
-      <p>It is now {date},</p>
-      <p>{time}</p>
+      <p>It is now {today.toLocaleDateString(locale)},</p>
+      <p>{today.toLocaleTimeString(locale)}</p>
     </HeaderWrapper>
   );
 };

@@ -1,5 +1,4 @@
 /* eslint-disable array-callback-return */
-/* eslint-disable no-console */
 import React, { useEffect, useMemo, useState } from 'react';
 import { useParams } from 'react-router-dom';
 
@@ -18,7 +17,7 @@ export const PokemonDescription: React.FC = () => {
         const response = await getPokemon(Number(id));
         setPokemon(response.data);
       } catch (error) {
-        console.log(error);
+        console.error(error);
       }
     })();
   }, [id]);

@@ -1,4 +1,3 @@
-/* eslint-disable no-console */
 import React, { useEffect, useState } from 'react';
 import Pagination from '@mui/material/Pagination';
 import { useSearchParams } from 'react-router-dom';
@@ -13,7 +12,6 @@ interface IOption {
 export const PaginationPokemons: React.FC<IOption> = (props) => {
   const [searchParams, setSearchParams] = useSearchParams();
   const [count, setCount] = useState(0);
-  const [page, setPage] = useState(Number(searchParams.get('page')) || 1);
 
   useEffect(() => {
     (async () => {
@@ -21,13 +19,12 @@ export const PaginationPokemons: React.FC<IOption> = (props) => {
         const response = await getPagination();
         setCount(Math.ceil(response.data.count / props.limit));
       } catch (err) {
-        console.log(err);
+        console.error(err);
       }
     })();
   }, [props.limit]);
 
   const changePage = async (event: React.ChangeEvent<unknown>, value: number) => {
-    setPage(value);
     searchParams.set('page', String(value));
     setSearchParams(searchParams);
   };
@@ -36,7 +33,7 @@ export const PaginationPokemons: React.FC<IOption> = (props) => {
     <PaginationPokemonsWrapper>
       <Pagination
         count={count}
-        page={page}
+        page={Number(searchParams.get('page')) || 1}
         onChange={changePage}
         defaultPage={1}
         siblingCount={3}
